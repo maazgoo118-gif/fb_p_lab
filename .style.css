@@ -1,0 +1,91 @@
+- {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: Arial, sans-serif;
+background: #f0f2f5;
+color: #1c1e21;
+min-height: 100vh;
+}
+
+header {
+background: #1877f2;
+color: white;
+text-align: center;
+padding: 25px 10px;
+}
+
+header h1 {
+font-size: 30px;
+margin-bottom: 8px;
+}
+
+.container {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 50px 15px;
+}
+
+.card {
+background: white;
+width: 100%;
+max-width: 400px;
+padding: 30px;
+border-radius: 12px;
+text-align: center;
+box-shadow: 0 4px 15px #00000015;
+}
+
+.card h2 {
+color: #1877f2;
+margin-bottom: 12px;
+}
+
+.card p {
+margin-bottom: 20px;
+line-height: 1.7;
+}
+
+input {
+width: 100%;
+padding: 14px;
+margin-bottom: 15px;
+border: 1px solid #ddd;
+border-radius: 7px;
+font-size: 16px;
+}
+
+input:disabled {
+background: #eee;
+}
+
+button {
+width: 100%;
+padding: 14px;
+background: #1877f2;
+color: white;
+border: none;
+border-radius: 7px;
+font-size: 17px;
+font-weight: bold;
+cursor: pointer;
+}
+
+button:hover {
+background: #166fe5;
+}
+
+#result {
+margin-top: 20px;
+font-weight: bold;
+}
+
+footer {
+text-align: center;
+padding: 20px;
+color: #65676b;
+}
