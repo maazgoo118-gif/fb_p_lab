@@ -1,46 +1,74 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FB Security Lab</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body><header>
+<body>
+
+<header>
     <h1>FB Security Lab</h1>
     <p>مختبر التوعية بالأمن السيبراني</p>
 </header>
 
 <main class="container">
+
     <div class="card">
-        <h2>محاكاة تسجيل الدخول</h2>
-        <p>تجربة تعليمية لاكتشاف صفحات التصيد الإلكتروني.</p>
+
+        <h2>محاكاة تعليمية</h2>
+
+        <p>
+            مرحباً بك في مختبر التوعية بالتصيد الإلكتروني.
+        </p>
 
         <form id="loginForm">
+
             <input
                 type="text"
                 id="username"
-                placeholder="اسم مستخدم تجريبي"
+                placeholder="اسم تجريبي"
                 required
             >
 
-            <input
-                type="password"
-                placeholder="لا تدخل كلمة مرور حقيقية"
-                disabled
-            >
+            <button type="submit">
+                بدء الاختبار
+            </button>
 
-            <button type="submit">بدء الاختبار</button>
         </form>
 
         <div id="result"></div>
+
+        <hr>
+
+        <section class="message-box">
+
+            <h3>إرسال إجابة إلى المسؤول</h3>
+
+            <p>
+                اكتب إجابتك حول الاختبار.
+                ستُعرض للمسؤول بعد إرسالها.
+            </p>
+
+            <textarea
+                id="adminMessage"
+                placeholder="اكتب إجابتك هنا..."
+                rows="5"
+                maxlength="1000"
+            ></textarea>
+
+            <button type="button" id="sendMessage">
+                إرسال الإجابة
+            </button>
+
+            <p id="messageStatus"></p>
+
+        </section>
+
     </div>
+
 </main>
 
 <footer>
-    <p>Cybersecurity Awareness Project © 2026</p>
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+    <p>Cyber
