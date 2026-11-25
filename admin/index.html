@@ -3,30 +3,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FB Lab Admin</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css"><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
 </head>
 <body><header>
     <h1>🛡️ FB Security Lab</h1>
     <p>غرفة إدارة المختبر</p>
-</header><main class="dashboard"><div class="stat-card">
-    <h3>عدد المشاركين</h3>
-    <p id="visitors">0</p>
-</div>
+</header><main class="dashboard"><section id="loginSection" class="logs">
+    <h2>دخول المسؤول</h2>
 
-<div class="stat-card">
-    <h3>الاختبارات المنفذة</h3>
-    <p id="tests">0</p>
-</div>
+    <input type="email" id="adminEmail"
+           placeholder="البريد الإلكتروني">
 
-<div class="stat-card">
-    <h3>آخر تحديث</h3>
-    <p id="updated">--</p>
-</div>
+    <input type="password" id="adminPassword"
+           placeholder="كلمة المرور">
 
-<section class="logs">
-    <h2>سجل النشاطات</h2>
-    <div id="activity">لا توجد نشاطات حتى الآن.</div>
+    <button id="loginButton">تسجيل الدخول</button>
+    <p id="loginStatus"></p>
 </section>
 
-</main><script src="admin.js"></script></body>
+<section id="dashboardSection" hidden>
+
+    <button id="logoutButton">تسجيل الخروج</button>
+
+    <div class="stat-card">
+        <h3>عدد المشاركين</h3>
+        <p id="visitors">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>الاختبارات المنفذة</h3>
+        <p id="tests">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>آخر تحديث</h3>
+        <p id="updated">--</p>
+    </div>
+
+    <section class="logs">
+        <h2>سجل النشاطات</h2>
+        <div id="activity">لا توجد نشاطات حتى الآن.</div>
+    </section>
+
+</section>
+
+</main><script src="../firebase-config.js"></script><script src="admin.js"></script></body>
 </html>
