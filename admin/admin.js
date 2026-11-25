@@ -4,33 +4,73 @@ const tests = document.getElementById("tests");
 const updated = document.getElementById("updated");
 
 function loadDashboard() {
-const events = JSON.parse(
-localStorage.getItem("fb_lab_events") || "[]"
-);
 
-visitors.textContent = events.length;
-tests.textContent = events.filter(
-    event => event.type === "training_started"
-).length;
+    const events = JSON.parse(
+        localStorage.getItem("fb_lab_events") || "[]"
+    );
 
-updated.textContent = new Date().toLocaleTimeString("ar");
+    const trainingEvents = events.filter(
+        event => event.type === "training_started"
+    );
 
-if (events.length === 0) {
-    activity.textContent = "لا توجد نشاطات حتى الآن.";
-    return;
-}
+    const messages = events.filter(
+        event => event.type === "message"
+    );
 
-activity.innerHTML = "";
+    visitors.textContent = trainingEvents.length;
 
-events.slice().reverse().forEach(event => {
-    const item = document.createElement("p");
+    tests.textContent = trainingEvents.length;
 
-    item.textContent =
-        "اختبار تدريبي جديد — " +
-        new Date(event.date).toLocaleString("ar");
+    updated.textContent =
+        new Date().toLocaleTimeString("ar");
 
-    activity.appendChild(item);
-});
+    activity.innerHTML = "";
+
+    if (events.length === 0) {
+        activity.textContent =
+            "لا توجد نشاطات حتى الآن.";
+        return;
+    }
+
+    events.slice().reverse().forEach(event => {
+
+        const item = document.createElement("div");
+
+        item.style.padding = "12px";
+        item.style.marginBottom = "10px";
+        item.style.background = "#263950";
+        item.style.borderRadius = "8px";
+
+        const title = document.createElement("h4");
+
+        const details = document.createElement("p");
+
+        const date = document.createElement("small");
+
+        if (event.type === "message") {
+
+            title.textContent = "إجابة تدريبية جديدة";
+
+            details.textContent = event.message;
+
+        } else {
+
+            title.textContent = "بداية اختبار تدريبي";
+
+            details.textContent = "تم بدء اختبار جديد.";
+
+        }
+
+        date.textContent =
+            new Date(event.date).toLocaleString("ar");
+
+        item.appendChild(title);
+        item.appendChild(details);
+        item.appendChild(date);
+
+        activity.appendChild(item);
+
+    });
 
 }
 
