@@ -1,0 +1,25 @@
+const loginForm = document.getElementById("loginForm");
+const result = document.getElementById("result");
+
+loginForm.addEventListener("submit", function(event) {
+event.preventDefault();
+
+const username = document.getElementById("username").value.trim();
+
+if (!username) {
+    result.textContent = "يرجى إدخال اسم تجريبي.";
+    return;
+}
+
+result.style.color = "#1877f2";
+
+result.textContent =
+    "تم تسجيل مشاركتك في الاختبار بنجاح!";
+
+console.log("Training event:", {
+    username: username,
+    event: "training_started",
+    date: new Date().toISOString()
+});
+
+});
