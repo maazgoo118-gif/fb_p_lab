@@ -12,16 +12,14 @@ const loginButton = document.getElementById("loginButton");
 const loginStatus = document.getElementById("loginStatus");
 const logoutButton = document.getElementById("logoutButton");
 
-// Firebase initialization
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Admin UID
 const ADMIN_UID = "jADFKWvwMRXJ742pXKRHgDWdwFo2";
 
-// Login
+// تسجيل دخول المسؤول
 loginButton.addEventListener("click", async function () {
 const email = adminEmail.value.trim();
 const password = adminPassword.value;
@@ -42,13 +40,13 @@ try {
 
     if (credential.user.uid !== ADMIN_UID) {
         await auth.signOut();
-        throw new Error("هذا الحساب غير مخول بالدخول.");
+        loginStatus.textContent = "هذا الحساب غير مخول بالدخول.";
+    } else {
+        loginStatus.textContent = "تم تسجيل الدخول بنجاح.";
     }
 
-    loginStatus.textContent = "تم تسجيل الدخول بنجاح.";
-
 } catch (error) {
-    console.error(error);
+    console.error("Login error:", error);
     loginStatus.textContent = "فشل تسجيل الدخول. تحقق من بيانات الحساب.";
 } finally {
     loginButton.disabled = false;
@@ -56,21 +54,20 @@ try {
 
 });
 
-// Logout
+// تسجيل الخروج
 logoutButton.addEventListener("click", async function () {
 await auth.signOut();
 });
 
-// Authentication state
+// متابعة حالة تسجيل الدخول
 auth.onAuthStateChanged(async function (user) {
 if (user && user.uid === ADMIN_UID) {
 loginSection.hidden = true;
 dashboardSection.hidden = false;
-
-    await loadDashboard();
+await loadDashboard();
 } else {
-    dashboardSection.hidden = true;
-    loginSection.hidden = false;
+dashboardSection.hidden = true;
+loginSection.hidden = false;
 
     if (user) {
         await auth.signOut();
@@ -79,12 +76,11 @@ dashboardSection.hidden = false;
 
 });
 
-// Load data from Firestore
+// تحميل النشاطات من Firebase
 async function loadDashboard() {
 try {
 const snapshot = await db.collection("training_events").get();
-
-    const events = [];
+const events = [];
 
     snapshot.forEach(function (doc) {
         events.push(doc.data());
@@ -96,7 +92,6 @@ const snapshot = await db.collection("training_events").get();
 
     visitors.textContent = trainingEvents.length;
     tests.textContent = trainingEvents.length;
-
     updated.textContent = new Date().toLocaleTimeString("ar");
 
     activity.textContent = "";
@@ -107,20 +102,13 @@ const snapshot = await db.collection("training_events").get();
     }
 
     events.sort(function (a, b) {
-        const dateA = a.createdAt
-            ? a.createdAt.toMillis()
-            : 0;
-
-        const dateB = b.createdAt
-            ? b.createdAt.toMillis()
-            : 0;
-
+        const dateA = a.createdAt ? a.createdAt.toMillis() : 0;
+        const dateB = b.createdAt ? b.createdAt.toMillis() : 0;
         return dateB - dateA;
     });
 
     events.forEach(function (event) {
         const item = document.createElement("div");
-
         item.style.padding = "12px";
         item.style.marginBottom = "10px";
         item.style.background = "#263950";
@@ -156,53 +144,9 @@ const snapshot = await db.collection("training_events").get();
 
 }
 
-// Refresh dashboard every 10 seconds
+// تحديث لوحة الإدارة كل 10 ثوانٍ
 setInterval(function () {
 if (auth.currentUser && auth.currentUser.uid === ADMIN_UID) {
 loadDashboard();
 }
 }, 10000);
-
-        const item = document.createElement("div");
-
-        item.style.padding = "12px";
-        item.style.marginBottom = "10px";
-        item.style.background = "#263950";
-        item.style.borderRadius = "8px";
-
-        const title = document.createElement("h4");
-
-        const details = document.createElement("p");
-
-        const date = document.createElement("small");
-
-        if (event.type === "message") {
-
-            title.textContent = "إجابة تدريبية جديدة";
-
-            details.textContent = event.message;
-
-        } else {
-
-            title.textContent = "بداية اختبار تدريبي";
-
-            details.textContent = "تم بدء اختبار جديد.";
-
-        }
-
-        date.textContent =
-            new Date(event.date).toLocaleString("ar");
-
-        item.appendChild(title);
-        item.appendChild(details);
-        item.appendChild(date);
-
-        activity.appendChild(item);
-
-    });
-
-}
-
-loadDashboard();
-
-setInterval(loadDashboard, 3000);
