@@ -1,32 +1,48 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
-<head>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FB Lab Admin</title>
-    <link rel="stylesheet" href="admin.css"><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FB Lab Admin</title>
+
+<link rel="stylesheet" href="admin.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-</head>
-<body><header>
+</head><body><header>
     <h1>🛡️ FB Security Lab</h1>
     <p>غرفة إدارة المختبر</p>
-</header><main class="dashboard"><section id="loginSection" class="logs">
+</header><main class="dashboard"><!-- Admin Login -->
+<section id="loginSection" class="logs">
+
     <h2>دخول المسؤول</h2>
 
-    <input type="email" id="adminEmail"
-           placeholder="البريد الإلكتروني">
+    <input
+        type="email"
+        id="adminEmail"
+        placeholder="البريد الإلكتروني"
+    >
 
-    <input type="password" id="adminPassword"
-           placeholder="كلمة المرور">
+    <input
+        type="password"
+        id="adminPassword"
+        placeholder="كلمة المرور"
+    >
 
-    <button id="loginButton">تسجيل الدخول</button>
+    <button type="button" id="loginButton">
+        تسجيل الدخول
+    </button>
+
     <p id="loginStatus"></p>
+
 </section>
 
+<!-- Admin Dashboard -->
 <section id="dashboardSection" hidden>
 
-    <button id="logoutButton">تسجيل الخروج</button>
+    <button type="button" id="logoutButton">
+        تسجيل الخروج
+    </button>
 
     <div class="stat-card">
         <h3>عدد المشاركين</h3>
@@ -50,5 +66,13 @@
 
 </section>
 
-</main><script src="../firebase-config.js"></script><script src="admin.js"></script></body>
+</main><!-- Firebase Configuration --><script src="../firebase-config.js"></script><!-- JavaScript Error Detector --><script>
+window.addEventListener("error", function(event) {
+    alert("JavaScript Error: " + event.message);
+});
+
+window.addEventListener("unhandledrejection", function(event) {
+    alert("Promise Error: " + event.reason);
+});
+</script><!-- Admin JavaScript --><script src="admin.js"></script></body>
 </html>
