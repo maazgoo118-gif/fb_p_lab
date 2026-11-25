@@ -2,24 +2,31 @@ const loginForm = document.getElementById("loginForm");
 const result = document.getElementById("result");
 
 loginForm.addEventListener("submit", function(event) {
-event.preventDefault();
+    event.preventDefault();
 
-const username = document.getElementById("username").value.trim();
+    const username = document.getElementById("username").value.trim();
 
-if (!username) {
-    result.textContent = "يرجى إدخال اسم تجريبي.";
-    return;
-}
+    if (!username) {
+        result.textContent = "أدخل اسماً تجريبياً.";
+        return;
+    }
 
-result.style.color = "#1877f2";
+    const events = JSON.parse(
+        localStorage.getItem("fb_lab_events") || "[]"
+    );
 
-result.textContent =
-    "تم تسجيل مشاركتك في الاختبار بنجاح!";
+    events.push({
+        type: "training_started",
+        date: new Date().toISOString()
+    });
 
-console.log("Training event:", {
-    username: username,
-    event: "training_started",
-    date: new Date().toISOString()
-});
+    localStorage.setItem(
+        "fb_lab_events",
+        JSON.stringify(events)
+    );
 
+    result.style.color = "#1877f2";
+    result.textContent = "بدأ الاختبار بنجاح!";
+
+    loginForm.reset();
 });
