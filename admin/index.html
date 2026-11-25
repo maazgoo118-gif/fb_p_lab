@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FB Lab Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FB Security Lab</title>
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="style.css">
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -11,68 +11,70 @@
 
 </head><body><header>
     <h1>🛡️ FB Security Lab</h1>
-    <p>غرفة إدارة المختبر</p>
-</header><main class="dashboard"><!-- Admin Login -->
-<section id="loginSection" class="logs">
+    <p>مختبر التوعية بالأمن السيبراني</p>
+</header><main class="container"><div class="card">
 
-    <h2>دخول المسؤول</h2>
+    <h2>محاكاة تعليمية</h2>
 
-    <input
-        type="email"
-        id="adminEmail"
-        placeholder="البريد الإلكتروني"
-    >
+    <p>
+        مرحباً بك في مختبر التوعية بالتصيد الإلكتروني.
+    </p>
 
-    <input
-        type="password"
-        id="adminPassword"
-        placeholder="كلمة المرور"
-    >
+    <p>
+        هذه محاكاة تعليمية لا تطلب كلمات مرور حقيقية
+        ولا تجمع بيانات تسجيل الدخول.
+    </p>
 
-    <button type="button" id="loginButton">
-        تسجيل الدخول
-    </button>
+    <!-- Training Form -->
+    <form id="loginForm">
 
-    <p id="loginStatus"></p>
+        <input
+            type="text"
+            id="username"
+            placeholder="اسم تجريبي"
+            maxlength="50"
+            required
+        >
 
-</section>
+        <button type="submit">
+            بدء الاختبار
+        </button>
 
-<!-- Admin Dashboard -->
-<section id="dashboardSection" hidden>
+    </form>
 
-    <button type="button" id="logoutButton">
-        تسجيل الخروج
-    </button>
+    <div id="result"></div>
 
-    <div class="stat-card">
-        <h3>عدد المشاركين</h3>
-        <p id="visitors">0</p>
-    </div>
+    <hr>
 
-    <div class="stat-card">
-        <h3>الاختبارات المنفذة</h3>
-        <p id="tests">0</p>
-    </div>
+    <!-- Training Answer -->
+    <section class="message-box">
 
-    <div class="stat-card">
-        <h3>آخر تحديث</h3>
-        <p id="updated">--</p>
-    </div>
+        <h3>إرسال إجابة إلى المسؤول</h3>
 
-    <section class="logs">
-        <h2>سجل النشاطات</h2>
-        <div id="activity">لا توجد نشاطات حتى الآن.</div>
+        <p>
+            اكتب إجابتك حول الاختبار.
+            ستُعرض للمسؤول بعد إرسالها.
+        </p>
+
+        <textarea
+            id="adminMessage"
+            placeholder="اكتب إجابتك هنا..."
+            rows="5"
+            maxlength="1000"
+        ></textarea>
+
+        <button type="button" id="sendMessage">
+            إرسال الإجابة
+        </button>
+
+        <p id="messageStatus"></p>
+
     </section>
 
-</section>
+</div>
 
-</main><!-- Firebase Configuration --><script src="../firebase-config.js"></script><!-- JavaScript Error Detector --><script>
-window.addEventListener("error", function(event) {
-    alert("JavaScript Error: " + event.message);
-});
-
-window.addEventListener("unhandledrejection", function(event) {
-    alert("Promise Error: " + event.reason);
-});
-</script><!-- Admin JavaScript --><script src="admin.js"></script></body>
+</main><footer>
+    <p>Cyber Security Awareness Lab</p>
+    <p>مشروع تعليمي للتوعية بالأمن السيبراني</p>
+</footer><!-- Firebase Configuration --><script src="firebase-config.js"></script><!-- Main JavaScript --><script src="script.js"></script></body>
 </html>
