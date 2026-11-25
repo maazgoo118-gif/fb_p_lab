@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: Arial, sans-serif;
+background: #101827;
+color: white;
+min-height: 100vh;
+}
+
+header {
+background: #17263c;
+padding: 25px;
+text-align: center;
+border-bottom: 2px solid #1877f2;
+}
+
+header h1 {
+color: #38a3ff;
+margin-bottom: 10px;
+}
+
+.dashboard {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 20px;
+padding: 25px;
+}
+
+.stat-card {
+background: #1c2b40;
+padding: 25px;
+border-radius: 12px;
+text-align: center;
+border: 1px solid #29415f;
+}
+
+.stat-card h3 {
+color: #9bb9d9;
+margin-bottom: 15px;
+}
+
+.stat-card p {
+font-size: 30px;
+font-weight: bold;
+color: #38a3ff;
+}
+
+.logs {
+grid-column: 1 / -1;
+background: #1c2b40;
+padding: 25px;
+border-radius: 12px;
+border: 1px solid #29415f;
+}
+
+.logs h2 {
+margin-bottom: 20px;
+color: #38a3ff;
+}
+
+#activity {
+line-height: 2;
+color: #cbd5e1;
+overflow-wrap: anywhere;
+}
